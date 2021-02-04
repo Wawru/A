@@ -1,0 +1,110 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int liczba_1, liczba_2, wynik;
+    float wynik_dzielenia;
+    char operacja_matematyczna, czy_zakonczyc;
+
+    start:
+
+    printf("Mozliwe do wykonania operacje:\n");
+    printf("1. Dodawanie(+)\n");
+    printf("2. Odejmowanie(-)\n");
+    printf("3. Mnozenie(*)\n");
+    printf("4. Dzielenie(/)\n");
+    printf("5. Reszta z dzielenia(%%)\n");
+
+    printf("Podaj operacje, ktora chcesz wykonac: ");
+    scanf(" %c", &operacja_matematyczna);
+    printf("Podaj pierwsza liczbe: ");
+    scanf("%d", &liczba_1);
+    printf("Podaj druga liczbe: ");
+    scanf("%d", &liczba_2);
+
+    switch (operacja_matematyczna)
+    {
+        case '+':
+            wynik = liczba_1 + liczba_2;
+            printf("Wynik operacji: %d %c %d = %d.\n", liczba_1, operacja_matematyczna, liczba_2, wynik);
+            wynik = 0;
+
+            break;
+
+        case '-':
+            wynik = liczba_1 - liczba_2;
+            printf("Wynik operacji: %d %c %d = %d.\n", liczba_1, operacja_matematyczna, liczba_2, wynik);
+            wynik = 0;
+
+            break;
+
+        case '*':
+            wynik = liczba_1 * liczba_2;
+            printf("Wynik operacji: %d %c %d = %d.\n", liczba_1, operacja_matematyczna, liczba_2, wynik);
+            wynik = 0;
+
+            break;
+
+        case '/':
+            while (liczba_2 == 0)
+            {
+                printf("Nie wolno dzielic przez zero!\nPodaj druga liczbe: ");
+                scanf("%d", &liczba_2);
+            }
+
+            wynik_dzielenia = (float)liczba_1 / (float)liczba_2;
+            printf("Wynik operacji: %d %c %d = %.2f.\n", liczba_1, operacja_matematyczna, liczba_2, wynik_dzielenia);
+            wynik_dzielenia = 0;
+
+            break;
+
+        case '%':
+            wynik = liczba_1 % liczba_2;
+            printf("Wynik operacji: %d %c %d = %d.\n", liczba_1, operacja_matematyczna, liczba_2, wynik);
+            wynik = 0;
+
+            break;
+
+        default:
+            printf("Niepoprawny operator matematyczny");
+
+            break;
+    }
+
+    printf("\nCzy chcesz wykonac kolejne operacje? (T/N): ");
+    scanf(" %c", &czy_zakonczyc);
+    system("cls");
+    switch (czy_zakonczyc)
+    {
+
+        case 'T':
+            goto start;
+
+            break;
+
+        case 'N':
+            break;
+
+        default:
+            while (czy_zakonczyc != 'T' || czy_zakonczyc != 'N')
+            {
+                printf("Podaj T lub N: ");
+                scanf(" %c", &czy_zakonczyc);
+
+                if (czy_zakonczyc == 'T')
+                {
+                    goto start;
+                }
+                else if (czy_zakonczyc == 'N')
+                {
+                    break;
+                }
+            }
+
+            break;
+    }
+
+    return 0;
+}
+
